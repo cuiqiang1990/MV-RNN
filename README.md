@@ -1,5 +1,5 @@
 # MV-RNN
-Code for my TKDE-2018
+Code for my TKDE-2018. It is implemented by Python27 and Theano.
 
 MV-RNN: A Multi-View Recurrent Neural Network for Sequential Recommendation
 
@@ -14,5 +14,7 @@ BibTex:
   year={2018},
   publisher={IEEE}
 }
+
+Our model is a little bit complicated. If you would like to make a comparison, you can apply one of the variants of the model, called 'Con.' in this paper. 
 
 If you have other questions or confusions, please send email to [cuiqiang1990@hotmail.com].
