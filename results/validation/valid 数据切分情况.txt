@@ -1,0 +1,85 @@
+
+总参数：
+    # 1. 建立各参数。要调整的地方都在 p 这了，其它函数都给写死。
+    if not p:
+        t = 'v'                       # 写1就是valid, 写0就是test
+        assert 't' == t or 'v' == t   # no other case
+        p = OrderedDict(
+            [
+                ('dataset',             'user_buys.txt'),
+                ('fea_image',           'normalized_features_image/'),
+                ('fea_text',            'normalized_features_text/'),
+                ('mode',                'test' if 't' == t else 'valid'),
+                ('split',               [0.8, 1.0] if 't' == t else [0.6, 0.8]),  # valid: 6/2/2。test: 8/2.
+                ('at_nums',             [10, 20, 30, 50]),  # 5， 15
+                ('intervals',           [2, 10, 30]),       # 以次数2为间隔，分为10个区间. 计算auc/recall@30上的. 换为10
+                ('epochs',              30 if 'taobao' in PATH else 50),
+                ('alpha',               0.1),
+
+                ('latent_size',         [20, 1024, 100]),
+                ('lambda',              0.001),         # 要不要self.lt和self.ux/wh/bi用不同的lambda？
+                ('lambda_ev',           0.0),           # 图文降维局矩阵的。就是这个0.0
+                ('lambda_ae',           0.001),         # 重构误差的。
+
+                ('train_fea_zero',      0.0),   # denoising模式。0.1、0.2/0.3
+                ('mini_batch',          1),     # 0:one_by_one,     1:mini_batch
+                ('mvgru',               0),     # 0:gru,
+                                                # 1:mv-gru-1unit, 2:mv-gru-2units, 3:mv-gru-con, 4:mv-gru-fusion
+
+                ('batch_size_train',    4),     # size大了之后性能下降非常严重
+                ('batch_size_test',     768),   # user*item矩阵太大，要多次计算。a5下亲测768最快。
+            ])
+        for i in p.items():
+            print(i)
+
+
+a515 - valid:
+    ('mode', 'valid')
+    ('split', [0.6, 0.8])
+    Original data ...
+        users, items, trans:    = 38840, 22586, 272949
+        time_stamp min, max:    = [1048896000, 1406073600]
+        time_date  min, max:    = [2003.03.29 08:00:00, 2014.07.23 08:00:00]
+        avg. user buy:          = 7.02752317199
+        avg. item bought:       = 12.0848755866
+    Remove duplicates in test set: mode = valid ...
+        users, items, trans:    = 16928, 20852, 100769
+        time_stamp min, max:    = [1343001600, 1406073600]
+        time_date  min, max:    = [2012.07.23 08:00:00, 2014.07.23 08:00:00]
+        avg. user buy:          = 5.95280009452
+        avg. item bought:       = 4.83258200652
+        useful, only left, only right: = 16928 + 11332 + 10580 = 38840
+    Use aliases to represent items ...
+    Devide test items into intervals ...
+        intervals               = [2, 10, 30]
+        test_i_intervals_items  = 15747, [9962, 3456, 1100, 510, 264, 160, 87, 59, 40, 109]
+        test_i_intervals_trans  = 45196, [13882, 11589, 5909, 3797, 2478, 1820, 1172, 916, 698, 2935]
+        test_i_cold_active_items= 15747, [13418, 2329]
+        test_i_cold_active_trans= 45196, [25471, 19725]
+
+
+t515 - valid
+    ('mode', 'valid')
+    ('split', [0.6, 0.8])
+    Original data ...
+        users, items, trans:    = 1003331, 343134, 12613815
+        time_stamp min, max:    = [1402675200, 1434297600]
+        time_date  min, max:    = [2014.06.14 00:00:00, 2015.06.15 00:00:00]
+        avg. user buy:          = 12.5719378749
+        avg. item bought:       = 36.7606095578
+    Remove duplicates in test set: mode = valid ...
+        users, items, trans:    = 775024, 285433, 7479736
+        time_stamp min, max:    = [1402675200, 1434297600]
+        time_date  min, max:    = [2014.06.14 00:00:00, 2015.06.15 00:00:00]
+        avg. user buy:          = 9.65097338921
+        avg. item bought:       = 26.2048746991
+        useful, only left, only right: = 775024 + 202032 + 26275 = 1003331
+    Use aliases to represent items ...
+    Devide test items into intervals ...
+        intervals               = [2, 10, 30]
+        test_i_intervals_items  = 183545, [69273, 34618, 20589, 12508, 8302, 5839, 4264, 3314, 2710, 22128]
+        test_i_intervals_trans  = 2240745, [96185, 118937, 111798, 93046, 78510, 66911, 57407, 51236, 47326, 1519389]
+        test_i_cold_active_items= 183545, [103891, 79654]
+        test_i_cold_active_trans= 2240745, [215122, 2025623]
+
+

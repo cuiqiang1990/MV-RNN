@@ -1,0 +1,41 @@
+
+
+效果最好的参数组合：
+    Gru:
+        1.  alpha = 0.1, lambda = 0.001                     # lambda2       确定
+
+    MvGruCon & MvGruFusion:
+        2.  lambda_ev = 0.0                                 # lambda20      确定
+
+    MvGru2Units:
+        2.  lambda_ev = 0.0,        lambda_ae = 0.001       # lambda243     确定
+
+    MvGru：
+        2.  lambda_ev = 0.0,        lambda_ae = 0.0001      # lambda203     确定。lam243也不错
+
+
+    --------------------------------------------------------
+    Lstm:
+        1.  alpha = 0.1, lambda = 0.001                     # lambda2       确定
+
+    MvLstmCon & MvLstmFusion:
+        2.  lambda_ev = 0.0                                 # lambda20      确定
+
+    MvLstm2Units:
+        2.  lambda_ev = 0.00001,    lambda_ae = 0.001       # lambda242     确定
+
+    MvLstm：
+        2.  lambda_ev = 0.00001,    lambda_ae = 0.001       # lambda242     确定
+
+
+    --------------------------------------------------------
+    BPR
+        1.  alpha = 0.1, lambda = 0.0001                    # lambda3       确定
+
+    VBPR
+        2.  lambda_ev = 0.0001                              # lambda33      确定
+
+
+    --------------------------------------------------------
+    p-Lstm
+        1.  alpha = 0.1, lambda = 0.001                     # lambda2       确定
