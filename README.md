@@ -15,6 +15,6 @@ BibTex:
   publisher={IEEE}
 }
 
-Our model is a little bit complicated. If you would like to make a comparison, you can apply one of the variants of the model, called 'Con.' in this paper. It is easy to understand and implement.
+Our model is a little bit complicated and the annotations are in Chinese. If you would like to make a comparison, you can apply one of the variants of the model, called 'Con.' in this paper. It is easy to understand and implement.
 
 If you have other questions or confusions, please send email to [cuiqiang1990@hotmail.com].
