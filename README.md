@@ -8,10 +8,15 @@ https://ieeexplore.ieee.org/abstract/document/8534409
 BibTex:
 
 @article{cui2018mv,
+
   title={MV-RNN: A Multi-View Recurrent Neural Network for Sequential Recommendation},
+  
   author={Cui, Qiang and Wu, Shu and Liu, Qiang and Zhong, Wen and Wang, Liang},
-  journal={IEEE Transactions on Knowledge and Data Engineering},
+  
+  journal={IEEE Transactions on Knowledge and Data Engineering (TKDE)},
+  
   year={2018},
+  
   publisher={IEEE}
 }
 
