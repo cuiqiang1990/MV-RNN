@@ -22,4 +22,6 @@ BibTex:
 
 Our model is a little bit complicated and the annotations are in Chinese. If you would like to make a comparison, you can apply one of the variants of the model, called 'Con.' in this paper. It is easy to understand and implement.
 
+Original dataset: https://tianchi.aliyun.com/competition/entrance/231506/information
+
 If you have other questions or confusions, please send email to [cuiqiang1990@hotmail.com].
